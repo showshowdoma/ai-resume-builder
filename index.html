@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Resume Builder</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        // No external libraries needed for PDF generation
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>AI Resume Builder</h1>
+                <p>Create your professional resume with AI assistance</p>
+                <button class="theme-toggle btn" id="themeToggle">Dark Mode</button>
+            </div>
+        </header>
+
+        <main>
+            <div class="form-container">
+                <div class="template-selector">
+                    <h2>Choose Template</h2>
+                    <div class="template-options">
+                        <div class="template-option active" data-template="modern">
+                            <div class="template-preview modern-preview">
+                                <div class="preview-header"></div>
+                                <div class="preview-content">
+                                    <div class="preview-line"></div>
+                                    <div class="preview-line"></div>
+                                    <div class="preview-line short"></div>
+                                </div>
+                            </div>
+                            <span>Modern</span>
+                        </div>
+                        <div class="template-option" data-template="classic">
+                            <div class="template-preview classic-preview">
+                                <div class="preview-header classic"></div>
+                                <div class="preview-content">
+                                    <div class="preview-line"></div>
+                                    <div class="preview-line"></div>
+                                    <div class="preview-line short"></div>
+                                </div>
+                            </div>
+                            <span>Classic</span>
+                        </div>
+                        <div class="template-option" data-template="minimal">
+                            <div class="template-preview minimal-preview">
+                                <div class="preview-header minimal"></div>
+                                <div class="preview-content">
+                                    <div class="preview-line"></div>
+                                    <div class="preview-line"></div>
+                                    <div class="preview-line short"></div>
+                                </div>
+                            </div>
+                            <span>Minimal</span>
+                        </div>
+                        <div class="template-option" data-template="creative">
+                            <div class="template-preview creative-preview">
+                                <div class="preview-header creative"></div>
+                                <div class="preview-content">
+                                    <div class="preview-line"></div>
+                                    <div class="preview-line"></div>
+                                    <div class="preview-line short"></div>
+                                </div>
+                            </div>
+                            <span>Creative</span>
+                        </div>
+                        <div class="template-option" data-template="executive">
+                            <div class="template-preview executive-preview">
+                                <div class="preview-header executive"></div>
+                                <div class="preview-content">
+                                    <div class="preview-line"></div>
+                                    <div class="preview-line"></div>
+                                    <div class="preview-line short"></div>
+                                </div>
+                            </div>
+                            <span>Executive</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="template-settings">
+                    <h3>Customize Template</h3>
+                    <div class="settings-grid">
+                        <div class="setting-group">
+                            <label for="templateColor">Accent Color</label>
+                            <input type="color" id="templateColor" value="#2563eb">
+                        </div>
+                        <div class="setting-group">
+                            <label for="fontSize">Font Size</label>
+                            <select id="fontSize">
+                                <option value="small">Small</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="large">Large</option>
+                            </select>
+                        </div>
+                        <div class="setting-group">
+                            <label for="spacing">Spacing</label>
+                            <select id="spacing">
+                                <option value="compact">Compact</option>
+                                <option value="normal" selected>Normal</option>
+                                <option value="relaxed">Relaxed</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="resumeForm">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="jobTitle">Job Title</label>
+                        <input type="text" id="jobTitle" name="jobTitle" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="skills">Skills (comma-separated)</label>
+                        <textarea id="skills" name="skills" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="experience">Work Experience</label>
+                        <textarea id="experience" name="experience" required placeholder="Enter your work experience..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="education">Education</label>
+                        <textarea id="education" name="education" required placeholder="Enter your education details..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="projects">Projects</label>
+                        <textarea id="projects" name="projects" placeholder="Enter your notable projects..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="certifications">Certifications</label>
+                        <textarea id="certifications" name="certifications" placeholder="Enter your certifications..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="languages">Languages</label>
+                        <input type="text" id="languages" name="languages" placeholder="Enter languages you know (comma-separated)">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="interests">Interests</label>
+                        <input type="text" id="interests" name="interests" placeholder="Enter your professional interests (comma-separated)">
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit" class="btn primary">Generate Resume</button>
+                        <button type="button" class="btn secondary" id="sampleDataBtn">Try Sample Data</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="preview-container" id="resumePreview">
+                <!-- Resume preview will be inserted here -->
+            </div>
+
+            <div class="actions">
+                <button id="exportPdf" class="btn secondary" style="display: none;">Export as PDF</button>
+            </div>
+        </main>
+
+        <footer>
+            <p>© 2025 AI Resume Builder. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
