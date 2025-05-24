@@ -15,3 +15,4 @@ This is a lightweight AI-powered resume builder web application built using HTML
 - html2pdf.js for PDF export
 
 ## Live Demo
+https://showshowdoma.github.io/ai-resume-builder/
